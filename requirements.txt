@@ -1,0 +1,1 @@
+﻿asgiref==3.11.1\r\nDjango==6.0.4\r\nsqlparse==0.5.5\r\ndjangorestframework==3.17.1
