@@ -1,4 +1,4 @@
-# 🚀 Django REST API Project
+# Django REST API Project
 
 This is a Django REST Framework project that implements CRUD operations with authentication and user-based data handling.
 
