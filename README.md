@@ -25,6 +25,3 @@ This is a Django REST Framework project that implements CRUD operations with aut
 - SQLite (default DB)
 - Postman (API testing)
 
----
-
-## Project Structure
