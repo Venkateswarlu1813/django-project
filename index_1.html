@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Task</title>
+</head>
+<body>
+
+  <h2>JavaScript Demo</h2>
+
+  <input type="number" id="num1" placeholder="Enter first number">
+  <input type="number" id="num2" placeholder="Enter second number">
+
+  <br><br>
+
+  <button onclick="add()">Add</button>
+  <button onclick="subtract()">Subtract</button>
+  <button onclick="multiply()">Multiply</button>
+  <button onclick="divide()">Divide</button>
+
+  <h3 id="result">Result: </h3>
+
+  <script>
+
+    function getValues() {
+      let a = parseFloat(document.getElementById("num1").value);
+      let b = parseFloat(document.getElementById("num2").value);
+      return {a, b};
+    }
+
+    function add() {
+      let {a, b} = getValues();
+      let result = a + b; // expression using operator
+      document.getElementById("result").innerText = "Result: " + result;
+    }
+
+    function subtract() {
+      let {a, b} = getValues();
+      let result = a - b; // operator
+      document.getElementById("result").innerText = "Result: " + result;
+    }
+
+    function multiply() {
+      let {a, b} = getValues();
+      let result = a * b; // operator
+      document.getElementById("result").innerText = "Result: " + result;
+    }
+
+    function divide() {
+      let {a, b} = getValues();
+      if (b === 0) {
+        document.getElementById("result").innerText = "Cannot divide by zero";
+        return;
+      }
+      let result = a / b; // operator
+      document.getElementById("result").innerText = "Result: " + result;
+    }
+
+  </script>
+
+</body>
+</html>
