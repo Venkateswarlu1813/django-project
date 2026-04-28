@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JavaScript Task</title>
+  <title>JS Functions, Loops & Objects</title>
 </head>
 <body>
 
-  <h2>JavaScript Demo</h2>
+  <h2>JavaScript Functions, Loops & Objects Demo</h2>
 
-  <input type="number" id="num1" placeholder="Enter first number">
-  <input type="number" id="num2" placeholder="Enter second number">
+  <button onclick="showNumbers()">Show Numbers (Loop)</button>
+  <button onclick="showStudent()">Show Object</button>
+  <button onclick="showDate()">Show Date</button>
+  <button onclick="showArray()">Show Array Loop</button>
 
-  <br><br>
-
-  <button onclick="add()">Add</button>
-  <button onclick="subtract()">Subtract</button>
-  <button onclick="multiply()">Multiply</button>
-  <button onclick="divide()">Divide</button>
-
-  <h3 id="result">Result: </h3>
+  <h3 id="output"></h3>
 
   <script>
 
-    function getValues() {
-      let a = parseFloat(document.getElementById("num1").value);
-      let b = parseFloat(document.getElementById("num2").value);
-      return {a, b};
-    }
-
-    function add() {
-      let {a, b} = getValues();
-      let result = a + b; 
-      document.getElementById("result").innerText = "Result: " + result;
-    }
-
-    function subtract() {
-      let {a, b} = getValues();
-      let result = a - b; 
-      document.getElementById("result").innerText = "Result: " + result;
-    }
-
-    function multiply() {
-      let {a, b} = getValues();
-      let result = a * b; 
-      document.getElementById("result").innerText = "Result: " + result;
-    }
-
-    function divide() {
-      let {a, b} = getValues();
-      if (b === 0) {
-        document.getElementById("result").innerText = "Cannot divide by zero";
-        return;
+    // FUNCTION + LOOP
+    function showNumbers() {
+      let result = "";
+      for (let i = 1; i <= 5; i++) {
+        result += i + " ";
       }
-      let result = a / b; 
-      document.getElementById("result").innerText = "Result: " + result;
+      document.getElementById("output").innerText = result;
+    }
+
+    // OBJECT CREATION FUNCTION
+    function showStudent() {
+      let student = {
+        name: "Venkateswarlu",
+        age: 21,
+        course: "CSE"
+      };
+
+      document.getElementById("output").innerText =
+        "Name: " + student.name +
+        ", Age: " + student.age +
+        ", Course: " + student.course;
+    }
+
+    // BUILT-IN OBJECT (Date)
+    function showDate() {
+      let today = new Date();
+      document.getElementById("output").innerText =
+        "Current Date & Time: " + today;
+    }
+
+    // ARRAY + LOOP + OBJECT
+    function showArray() {
+      let fruits = ["Apple", "Banana", "Mango"];
+      let result = "";
+
+      fruits.forEach(function(item) {
+        result += item + " ";
+      });
+
+      document.getElementById("output").innerText = result;
     }
 
   </script>
