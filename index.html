@@ -35,7 +35,7 @@
 </head>
 
 <body>
-<<<<<<< HEAD
+<HEAD> </HEAD>
     <h1>Welcome to HTML Page</h1>
     <h2>Sub Heading</h2>
     <p>This is a paragraph demonstrating <b>bold</b>, <i>italic</i>, and <u>underline</u>.</p>
@@ -53,7 +53,6 @@
 
     <img src="https://via.placeholder.com/150" alt="Sample Image">
 
->>>>>>> da6ab60 (Added Django + JS integration project (GET & POST working))
     <h3>My Skills</h3>
     <ul>
         <li>HTML</li>
@@ -72,13 +71,13 @@
         </tr>
     </table>
 
-<<<<<<< HEAD
+<HEAD></HEAD>
     <h3>Contact Form</h3>
     <form>
     <h3>Add Student</h3>
 
     <form onsubmit="addStudent(event)">
->>>>>>> da6ab60 (Added Django + JS integration project (GET & POST working))
+
         <label>Name:</label>
         <input type="text" id="name" required><br><br>
 
@@ -94,7 +93,6 @@
     </div>
 
     <button onclick="alert('Hello Venky!')">Click Me</button>
-
     <script>
         function loadStudents() {
             fetch("http://127.0.0.1:8000/api/students/")
@@ -135,6 +133,7 @@
                     alert("Error fetching data. Check backend.");
                 });
         }
+
         function addStudent(event) {
             event.preventDefault();
 
@@ -149,8 +148,8 @@
                 body: JSON.stringify({
                     name: name,
                     age: age,
-                    course: 10,   
-                    user: 1      
+                    course: 10,  
+                    user: 1       
                 })
             })
             .then(response => {
