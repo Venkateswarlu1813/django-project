@@ -3,64 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Practice Page</title>
+    <title>Django + JS Integration</title>
+
     <style>
         body {
             font-family: Arial;
             background-color: #f4f4f4;
+            padding: 20px;
         }
+
+        table {
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px 12px;
+        }
+
+        button {
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+
         .box {
             border: 2px solid black;
             padding: 10px;
-            margin: 10px;
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
+<<<<<<< HEAD
     <h1>Welcome to HTML Page</h1>
     <h2>Sub Heading</h2>
     <p>This is a paragraph demonstrating <b>bold</b>, <i>italic</i>, and <u>underline</u>.</p>
     <a href="https://www.google.com" target="_blank">Go to Google</a>
     <br><br>
     <img src="https://via.placeholder.com/150" alt="Sample Image" width="150" height="150">
+=======
+
+    <h1>Welcome to HTML Page</h1>
+    <h2>Sub Heading</h2>
+
+    <p>This is a paragraph demonstrating <b>bold</b>, <i>italic</i>, and <u>underline</u>.</p>
+
+    <a href="https://www.google.com" target="_blank">Go to Google</a>
+    <br><br>
+
+    <img src="https://via.placeholder.com/150" alt="Sample Image">
+
+>>>>>>> da6ab60 (Added Django + JS integration project (GET & POST working))
     <h3>My Skills</h3>
     <ul>
         <li>HTML</li>
         <li>CSS</li>
         <li>JavaScript</li>
     </ul>
-    <h3>Student Table</h3>
-    <table border="1">
+
+    <!-- ===================== GET DATA ===================== -->
+    <h3>Student Table (From Django API)</h3>
+
+    <button onclick="loadStudents()">Load Students</button>
+
+    <table border="1" id="studentTable">
         <tr>
             <th>Name</th>
             <th>Age</th>
         </tr>
-        <tr>
-            <td>Venky</td>
-            <td>22</td>
-        </tr>
     </table>
 
+<<<<<<< HEAD
     <h3>Contact Form</h3>
     <form>
+=======
+    <!-- ===================== POST DATA ===================== -->
+    <h3>Add Student</h3>
+
+    <form onsubmit="addStudent(event)">
+>>>>>>> da6ab60 (Added Django + JS integration project (GET & POST working))
         <label>Name:</label>
-        <input type="text" placeholder="Enter name"><br><br>
+        <input type="text" id="name" required><br><br>
 
-        <label>Email:</label>
-        <input type="email" required><br><br>
+        <label>Age:</label>
+        <input type="number" id="age" required><br><br>
 
-        <label>Password:</label>
-        <input type="password"><br><br>
-
-        <input type="submit" value="Submit">
+        <input type="submit" value="Add Student">
     </form>
 
     <div class="box">
         <p>This is inside a div</p>
         <span style="color:red;">This is a span element</span>
     </div>
+
     <button onclick="alert('Hello Venky!')">Click Me</button>
+
+    <!-- ===================== JAVASCRIPT ===================== -->
+    <script>
+
+        // ✅ GET STUDENTS
+        function loadStudents() {
+            fetch("http://127.0.0.1:8000/api/students/")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("HTTP error " + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("DATA:", data);
+
+                    let table = document.getElementById("studentTable");
+
+                    // Reset table
+                    table.innerHTML = `
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                        </tr>
+                    `;
+
+                    data.forEach(student => {
+                        let row = document.createElement("tr");
+
+                        let nameCell = document.createElement("td");
+                        nameCell.textContent = student.name;
+
+                        let ageCell = document.createElement("td");
+                        ageCell.textContent = student.age;
+
+                        row.appendChild(nameCell);
+                        row.appendChild(ageCell);
+
+                        table.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    console.log("ERROR:", error);
+                    alert("Error fetching data. Check backend.");
+                });
+        }
+
+        // ✅ ADD STUDENT (POST)
+        function addStudent(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let age = document.getElementById("age").value;
+
+            fetch("http://127.0.0.1:8000/api/students/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    age: age,
+                    course: 10,   // ⚠️ must exist in DB
+                    user: 1       // ⚠️ must exist in DB
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("POST failed");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Added:", data);
+                alert("Student added successfully ✅");
+
+                loadStudents(); // refresh table
+            })
+            .catch(error => {
+                console.log("ERROR:", error);
+                alert("Error adding student. Check course/user ID.");
+            });
+        }
+
+    </script>
 
 </body>
 </html>
