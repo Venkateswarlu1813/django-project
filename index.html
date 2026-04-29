@@ -42,7 +42,6 @@
     <a href="https://www.google.com" target="_blank">Go to Google</a>
     <br><br>
     <img src="https://via.placeholder.com/150" alt="Sample Image" width="150" height="150">
-=======
 
     <h1>Welcome to HTML Page</h1>
     <h2>Sub Heading</h2>
@@ -62,7 +61,6 @@
         <li>JavaScript</li>
     </ul>
 
-    <!-- ===================== GET DATA ===================== -->
     <h3>Student Table (From Django API)</h3>
 
     <button onclick="loadStudents()">Load Students</button>
@@ -77,8 +75,6 @@
 <<<<<<< HEAD
     <h3>Contact Form</h3>
     <form>
-=======
-    <!-- ===================== POST DATA ===================== -->
     <h3>Add Student</h3>
 
     <form onsubmit="addStudent(event)">
@@ -99,10 +95,7 @@
 
     <button onclick="alert('Hello Venky!')">Click Me</button>
 
-    <!-- ===================== JAVASCRIPT ===================== -->
     <script>
-
-        // ✅ GET STUDENTS
         function loadStudents() {
             fetch("http://127.0.0.1:8000/api/students/")
                 .then(response => {
@@ -115,8 +108,6 @@
                     console.log("DATA:", data);
 
                     let table = document.getElementById("studentTable");
-
-                    // Reset table
                     table.innerHTML = `
                         <tr>
                             <th>Name</th>
@@ -144,8 +135,6 @@
                     alert("Error fetching data. Check backend.");
                 });
         }
-
-        // ✅ ADD STUDENT (POST)
         function addStudent(event) {
             event.preventDefault();
 
@@ -160,8 +149,8 @@
                 body: JSON.stringify({
                     name: name,
                     age: age,
-                    course: 10,   // ⚠️ must exist in DB
-                    user: 1       // ⚠️ must exist in DB
+                    course: 10,   
+                    user: 1      
                 })
             })
             .then(response => {
@@ -174,7 +163,7 @@
                 console.log("Added:", data);
                 alert("Student added successfully ✅");
 
-                loadStudents(); // refresh table
+                loadStudents(); 
             })
             .catch(error => {
                 console.log("ERROR:", error);
